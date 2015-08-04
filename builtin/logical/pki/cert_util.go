@@ -107,7 +107,7 @@ func validateCommonNames(req *logical.Request, commonNames []string, role *roleE
 		return "", fmt.Errorf("Error compiling subdomain regex: %s", err)
 	}
 	for _, name := range commonNames {
-		if role.AllowLocalhost && name == "localhost" {
+		if role.AllowLocalhost && name == "localhost" || role.AllowAnyName {
 			continue
 		}
 
@@ -119,9 +119,6 @@ func validateCommonNames(req *logical.Request, commonNames []string, role *roleE
 		}
 		if !hostnameRegex.MatchString(sanitizedName) {
 			return name, nil
-		}
-		if role.AllowAnyName {
-			continue
 		}
 
 		if role.AllowTokenDisplayName {
