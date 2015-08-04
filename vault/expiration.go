@@ -36,7 +36,7 @@ const (
 	minRevokeDelay = 5 * time.Second
 
 	// maxLeaseDuration is the maximum lease duration
-	maxLeaseDuration = 30 * 24 * time.Hour
+	maxLeaseDuration = 365 * 24 * time.Hour
 
 	// defaultLeaseDuration is the lease duration used when no lease is specified
 	defaultLeaseDuration = maxLeaseDuration
